@@ -14,20 +14,21 @@ def plti (im,h=8,**kwargs):
     plt.axis("on")
     plt.show()
 
+def main():
+    arr=[]
+    image_list = []
+    for filename in glob.glob('Pics/*.jpg'):
+       im=Image.open(filename)
+       image_list.append(im)
+       maxsize = (500, 500)
+       im.thumbnail(maxsize, PIL.Image.ANTIALIAS)
+       a=np.array(im)
+       # convertback = Image.fromarray(a)
+       arr.append(a)
 
-arr=[]
-image_list = []
-for filename in glob.glob('Pics/*.jpg'):
-    im=Image.open(filename)
-    image_list.append(im)
-    maxsize = (500, 500)
-    im.thumbnail(maxsize, PIL.Image.ANTIALIAS)
-    a=np.array(im)
-    # convertback = Image.fromarray(a)
-    arr.append(a)
-
-for i in range(len(arr)):
-    plti(arr[i])
+    for i in range(len(arr)):
+       plti(arr[i])
+main()    
 
 
 
